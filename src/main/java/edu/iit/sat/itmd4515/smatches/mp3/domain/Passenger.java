@@ -34,6 +34,16 @@ public class Passenger extends Person implements Serializable{
 
    @OneToOne
    private Ventra ventra;
+
+    public Ventra getVentra() {
+        return ventra;
+    }
+
+   
+   public void setVentra(Ventra ventra) {
+        this.ventra = ventra;
+    }
+   
    
     public Train getTrain() {
         return train;

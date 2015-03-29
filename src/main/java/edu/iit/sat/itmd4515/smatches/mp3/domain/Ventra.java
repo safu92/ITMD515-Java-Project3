@@ -30,6 +30,7 @@ public class Ventra extends BaseEntity implements Serializable{
     
     private Double balance;
 
+
     /**
      * Get the value of balance
      *

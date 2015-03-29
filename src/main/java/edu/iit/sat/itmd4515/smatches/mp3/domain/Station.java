@@ -73,6 +73,16 @@ public class Station extends BaseEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setBuses(List<Bus> buses) {
+        this.buses = buses;
+    }
+
+    public void setTrains(List<Train> trains) {
+        this.trains = trains;
+    }
+    
+    
     
       @Override
     public String toString() {

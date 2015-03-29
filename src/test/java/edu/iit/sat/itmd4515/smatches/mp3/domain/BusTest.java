@@ -26,7 +26,6 @@ public class BusTest extends AbstractJPATest{
    
     
     @Test
-    @Ignore
     public void testCreate() {
         Bus newOne = new Bus();
         newOne.setName("155");
@@ -75,25 +74,26 @@ public class BusTest extends AbstractJPATest{
     }
 
     @Test
+    @Ignore
     public void testDelete() {
-    //    TypedQuery<RadioStation> q = em.createQuery("select r from RadioStation r where r.name = ?1", RadioStation.class);
-//        q.setParameter(1, "WTTW");
-//        RadioStation r = q.getSingleResult();
-//        
-//        assertNotNull(r.getId());
-//        
-//        tx.begin();
-//        for(DiscJockey d : r.getDiscJockeys()){
-//            em.remove(d);
-  //      }
-//        for(Show s : r.getShows()){
-//            em.remove(s);
-//        }
-//        em.remove(r);
-//        tx.commit();
-//
-//        RadioStation postRemove = em.find(RadioStation.class, 1L);
-//        assertNull(postRemove);
+        TypedQuery<Bus> q = em.createQuery("select b from Bus b where b.name = ?1", Bus.class);
+        q.setParameter(1, "49B");
+        Bus b = q.getSingleResult();
+        
+        assertNotNull(b.getId());
+
+        tx.begin();
+        for(Passenger p : b.getPassengers()){
+            em.remove(p);
+      }
+        for(Station s : b.getStations()){
+            em.remove(s);
+        }
+        em.remove(b);
+        tx.commit();
+
+        Bus postRemove = em.find(Bus.class, 1L);
+        assertNull(postRemove);
         
     }
 
