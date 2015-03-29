@@ -48,9 +48,9 @@ public class BusTest extends AbstractJPATest{
         for (Bus b : buses) {
             System.out.println(b.toString());
 
-   //         for (Route r : b.getRou()) {
-     //           System.out.println("\t"+r.toString());
-       //     }
+            for (Station s : b.getStations()) {
+                System.out.println("\t"+s.toString());
+          }
         }
     }
 

@@ -62,7 +62,7 @@ public abstract class AbstractJPATest {
         station.setName("Howard");
         
         Station station1 = new Station();
-        station.setName("Western");
+        station1.setName("Western");
         
         // Set fields for Driver
         Driver driver = new Driver();
@@ -109,7 +109,7 @@ public abstract class AbstractJPATest {
         v1.setExpiryDate(new GregorianCalendar(2017, 06, 24).getTime());
         v1.setBalance(25.00);
         
-        //Uni Directional One to One
+        //Uni Directional One to One Relationship of passenger to ventra
         p1.setVentra(v1);
         
         em.persist(p1);
@@ -131,15 +131,11 @@ public abstract class AbstractJPATest {
     }
 
     private void removeTestData() {
-//        TypedQuery<RadioStation> q = em.createQuery("select r from RadioStation r where r.name = ?1", RadioStation.class);
-//        q.setParameter(1, "WTTW");
-//        RadioStation r = q.getSingleResult();
 
-//        Show s = em.createNamedQuery("Show.findByName", Show.class).setParameter("name", "Daily News").getSingleResult();
+        Station s = em.createNamedQuery("Station.findByName", Station.class).setParameter("name", "Howard").getSingleResult();
 
         tx.begin();
-//        em.remove(r);
-//        em.remove(s);
+        em.remove(s);
         tx.commit();
     }
 }

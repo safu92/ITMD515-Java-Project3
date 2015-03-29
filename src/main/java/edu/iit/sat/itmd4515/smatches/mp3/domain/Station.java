@@ -22,9 +22,9 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Stations.findByName", query = "select s from Station s where s.name = :name"),
-    @NamedQuery(name = "Stations.findById", query = "select s from Station s where s.id = :id"),
-    @NamedQuery(name = "Stations.findAll", query = "select s from Station s")})
+    @NamedQuery(name = "Station.findByName", query = "select s from Station s where s.name = :name"),
+    @NamedQuery(name = "Station.findById", query = "select s from Station s where s.id = :id"),
+    @NamedQuery(name = "Station.findAll", query = "select s from Station s")})
 public class Station extends BaseEntity implements Serializable{
 
     public Station() {
