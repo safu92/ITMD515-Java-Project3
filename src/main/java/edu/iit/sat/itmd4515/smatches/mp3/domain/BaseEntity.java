@@ -29,6 +29,9 @@ public class BaseEntity {
     private Long id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
+
+    public BaseEntity() {
+    }
     
     @PreUpdate
     @PrePersist
@@ -47,6 +50,13 @@ public class BaseEntity {
 
     public Long getId() {
         return id;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("BaseEntity{id=").append(id).append(", lastUpdated=").append(lastUpdated).append('}');
+        return sb.toString();
     }
 
 }

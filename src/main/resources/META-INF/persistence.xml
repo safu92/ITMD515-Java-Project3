@@ -3,9 +3,11 @@
   <persistence-unit name="smatchesPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>edu.iit.sat.itmd4515.smatches.mp3.domain.Bus</class>
-    <class>edu.iit.sat.itmd4515.smatches.mp3.domain.Route</class>
     <class>edu.iit.sat.itmd4515.smatches.mp3.domain.Train</class>
     <class>edu.iit.sat.itmd4515.smatches.mp3.domain.Ventra</class>
+    <class>edu.iit.sat.itmd4515.smatches.mp3.domain.Station</class>
+    <class>edu.iit.sat.itmd4515.smatches.mp3.domain.Driver</class>
+    <class>edu.iit.sat.itmd4515.smatches.mp3.domain.Passenger</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="itmd4515"/>

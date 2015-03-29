@@ -51,8 +51,8 @@ public abstract class AbstractJPATest {
         bus.setName("49B");
         
         // Set fields for show
-        Route route = new Route();
-        route.setName("Howard to North Western");
+        Station station = new Station();
+        station.setName("Howard");
         
         // Set fields for DJ
         Driver driver = new Driver();
@@ -63,7 +63,7 @@ public abstract class AbstractJPATest {
         
         em.persist(driver);
         em.persist(bus);
-        em.persist(route);
+        em.persist(station);
         tx.commit();
     }
 

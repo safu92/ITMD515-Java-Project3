@@ -6,9 +6,12 @@
 package edu.iit.sat.itmd4515.smatches.mp3.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,11 +20,19 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Bus.findByName", query = "select b from Bus b where b.name = :name"),
-    @NamedQuery(name = "Bus.findById", query = "select b from Bus b where b.id = :id"),})
+    @NamedQuery(name = "Bus.findById", query = "select b from Bus b where b.id = :id"),
+    @NamedQuery(name = "Bus.findAll", query = "select b from Bus b")})
 public class Bus extends BaseEntity implements Serializable{
 
         private String name;
 
+        
+        @OneToMany(mappedBy = "bus")
+    private List<Passenger> passengers = new ArrayList<>();
+        
+//        @OneToMany(mappedBy = "bus")
+  //  private List<Station> stations = new ArrayList<>();
+        
     /**
      * Get the value of name
      *
@@ -43,5 +54,21 @@ public class Bus extends BaseEntity implements Serializable{
     
     public Bus() {
     }
+ 
     
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+    
+   // public List<Station> getStations() {
+//        return stations;
+//    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\n\t");
+        sb.append("Bus{name=").append(name).append('}');
+        return sb.toString();
+    }
 }

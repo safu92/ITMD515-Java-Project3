@@ -5,14 +5,21 @@
  */
 package edu.iit.sat.itmd4515.smatches.mp3.domain;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author ALLAH
  */
 @Entity
-public class Driver extends Person{
+@NamedQueries({
+    @NamedQuery(name = "Driver.findByName", query = "select d from Driver d where d.lastName = :lname"),
+    @NamedQuery(name = "Driver.findById", query = "select d from Driver d where d.id = :id"),
+    @NamedQuery(name = "Driver.findAll", query = "select d from Driver d")})
+public class Driver extends Person implements Serializable{
 
         private String driverBatch;
 

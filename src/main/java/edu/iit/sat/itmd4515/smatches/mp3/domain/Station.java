@@ -7,15 +7,21 @@ package edu.iit.sat.itmd4515.smatches.mp3.domain;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author ALLAH
  */
 @Entity
-public class Route extends BaseEntity implements Serializable{
+@NamedQueries({
+    @NamedQuery(name = "Stations.findByName", query = "select s from Station s where s.name = :name"),
+    @NamedQuery(name = "Stations.findById", query = "select s from Station s where s.id = :id"),
+    @NamedQuery(name = "Stations.findAll", query = "select s from Station s")})
+public class Station extends BaseEntity implements Serializable{
 
-    public Route() {
+    public Station() {
     }
     
     private String name;

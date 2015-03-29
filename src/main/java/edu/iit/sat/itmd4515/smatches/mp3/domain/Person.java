@@ -19,6 +19,8 @@ public abstract class Person extends BaseEntity{
     
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+    private String firstName;
+    private String lastName;
 
     /**
      * Get the value of birthDate
@@ -38,7 +40,7 @@ public abstract class Person extends BaseEntity{
         this.birthDate = birthDate;
     }
 
-    private String lastName;
+    
 
     /**
      * Get the value of lastName
@@ -58,7 +60,7 @@ public abstract class Person extends BaseEntity{
         this.lastName = lastName;
     }
 
-    private String firstName;
+    
 
     /**
      * Get the value of firstName
