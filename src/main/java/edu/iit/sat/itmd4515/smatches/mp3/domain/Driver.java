@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,6 +24,20 @@ public class Driver extends Person implements Serializable{
 
         private String driverBatch;
 
+        
+        @OneToOne(mappedBy = "driver")
+        private Bus bus;
+        
+          @OneToOne(mappedBy = "driver")
+        private Train train;
+
+    public Bus getBus() {
+        return bus;
+    }
+
+    public Train getTrain() {
+        return train;
+    }
     /**
      * Get the value of driverBatch
      *
@@ -44,5 +59,6 @@ public class Driver extends Person implements Serializable{
     
     public Driver() {
     }
+    
     
 }

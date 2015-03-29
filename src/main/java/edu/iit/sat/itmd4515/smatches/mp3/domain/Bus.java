@@ -8,10 +8,13 @@ package edu.iit.sat.itmd4515.smatches.mp3.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -30,8 +33,23 @@ public class Bus extends BaseEntity implements Serializable{
         @OneToMany(mappedBy = "bus")
     private List<Passenger> passengers = new ArrayList<>();
         
-//        @OneToMany(mappedBy = "bus")
-  //  private List<Station> stations = new ArrayList<>();
+        
+    @ManyToMany(mappedBy = "buses", cascade = CascadeType.PERSIST)
+    private List<Station> stations = new ArrayList<>();
+
+    @OneToOne
+    private Driver driver;
+
+    public Driver getDriver() {
+        return driver;
+    }
+    
+    public List<Station> getStations() {
+        return stations;
+    }
+    
+    //  @OneToMany(mappedBy = "bus")
+  //private List<Station> stations = new ArrayList<>();
         
     /**
      * Get the value of name
@@ -60,9 +78,9 @@ public class Bus extends BaseEntity implements Serializable{
         return passengers;
     }
     
-   // public List<Station> getStations() {
+    //public List<Station> getStations() {
 //        return stations;
-//    }
+  //  }
 
     @Override
     public String toString() {

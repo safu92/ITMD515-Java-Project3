@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -26,7 +27,23 @@ public class Passenger extends Person implements Serializable{
    @ManyToOne
    @JoinColumn(name = "BUS_ID")
    private Bus bus;
+   
+   @ManyToOne
+   @JoinColumn(name = "TRAIN_ID")
+   private Train train;
 
+   @OneToOne
+   private Ventra ventra;
+   
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
+   
     public Passenger() {
     }
 
@@ -37,5 +54,6 @@ public class Passenger extends Person implements Serializable{
     public void setBus(Bus bus) {
         this.bus = bus;
     }
+    
     
 }

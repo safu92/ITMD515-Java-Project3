@@ -6,9 +6,15 @@
 package edu.iit.sat.itmd4515.smatches.mp3.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +32,30 @@ public class Station extends BaseEntity implements Serializable{
     
     private String name;
 
+    
+  
+    
+     @ManyToMany
+    @JoinTable(name = "bus_stations",
+            joinColumns = @JoinColumn(name = "station_id"),
+            inverseJoinColumns = @JoinColumn(name = "bus_id"))
+    private List<Bus> buses = new ArrayList<>();
+
+    public List<Bus> getBuses() {
+        return buses;
+    }
+
+    
+    @ManyToMany
+    @JoinTable(name = "train_stations",
+            joinColumns = @JoinColumn(name = "station_id"),
+            inverseJoinColumns = @JoinColumn(name = "train_id"))
+    private List<Train> trains = new ArrayList<>();
+
+    public List<Train> getTrains() {
+        return trains;
+    }
+
     /**
      * Get the value of name
      *
@@ -42,6 +72,14 @@ public class Station extends BaseEntity implements Serializable{
      */
     public void setName(String name) {
         this.name = name;
+    }
+    
+      @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\n\t");
+        sb.append("Station{name=").append(name).append('}');
+        return sb.toString();
     }
 
 }
