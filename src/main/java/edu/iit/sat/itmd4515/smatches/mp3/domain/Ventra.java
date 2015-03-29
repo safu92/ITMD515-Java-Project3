@@ -15,5 +15,5 @@ import javax.persistence.Id;
  * @author ALLAH
  */
 @Entity
-public class Ventra {
+public class Ventra extends BaseEntity{
 }
