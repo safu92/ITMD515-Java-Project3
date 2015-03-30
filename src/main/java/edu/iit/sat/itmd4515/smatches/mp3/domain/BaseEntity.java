@@ -5,7 +5,6 @@
  */
 package edu.iit.sat.itmd4515.smatches.mp3.domain;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.persistence.GeneratedValue;
@@ -16,11 +15,10 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import sun.util.calendar.Gregorian;
 
 /**
  *
- * @author ALLAH
+ * @author smatches@hawk.iit.edu
  */
 @MappedSuperclass
 public class BaseEntity {

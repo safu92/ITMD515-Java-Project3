@@ -13,7 +13,7 @@ import org.junit.Ignore;
 
 /**
  *
- * @author ALLAH
+ * @author smatches@hawk.iit.edu
  */
 public class TrainTest extends AbstractJPATest{
     

@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author ALLAH
+ * @author smatches@hawk.iit.edu
  */
 @Entity
 @NamedQueries({

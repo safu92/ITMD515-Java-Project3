@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author ALLAH
+ * @author smatches@hawk.iit.edu
  */
 @Entity
 @NamedQueries({

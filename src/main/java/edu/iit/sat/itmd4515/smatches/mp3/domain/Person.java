@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author ALLAH
+ * @author smatches@hawk.iit.edu
  */
 @MappedSuperclass
 public abstract class Person extends BaseEntity{

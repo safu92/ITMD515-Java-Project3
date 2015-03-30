@@ -14,11 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 /**
  *
- * @author ALLAH
+ * @author smatches@hawk.iit.edu
  */
 @Entity
 @NamedQueries({

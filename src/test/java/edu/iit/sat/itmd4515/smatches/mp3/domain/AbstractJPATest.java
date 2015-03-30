@@ -6,12 +6,10 @@
 package edu.iit.sat.itmd4515.smatches.mp3.domain;
 
 import java.util.GregorianCalendar;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +17,7 @@ import org.junit.BeforeClass;
 
 /**
  *
- * @author smatches
+ * @author smatches@hawk.iit.edu
  */
 public abstract class AbstractJPATest {
 
