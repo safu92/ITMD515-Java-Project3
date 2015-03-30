@@ -35,6 +35,14 @@ public class Driver extends Person implements Serializable{
         return bus;
     }
 
+    public void setBus(Bus bus) {
+        this.bus = bus;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
     public Train getTrain() {
         return train;
     }
@@ -60,5 +68,12 @@ public class Driver extends Person implements Serializable{
     public Driver() {
     }
     
+      @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\n\t");
+        sb.append("Driver{batch=").append(driverBatch).append('}');
+        return sb.toString();
+    }
     
 }

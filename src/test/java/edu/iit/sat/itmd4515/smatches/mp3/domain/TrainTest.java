@@ -15,19 +15,19 @@ import org.junit.Ignore;
  *
  * @author ALLAH
  */
-public class BusTest extends AbstractJPATest{
+public class TrainTest extends AbstractJPATest{
     
-    public BusTest() {
+    public TrainTest() {
     }
    
     
     @Test
     public void testCreate() {
-        Bus newOne = new Bus();
-        newOne.setName("155");
+        Train newOne = new Train();
+        newOne.setName("Brown Line");
         
-        Bus anotherOne = new Bus();
-        anotherOne.setName("20");
+        Train anotherOne = new Train();
+        anotherOne.setName("Green Line");
         
         
         tx.begin();
@@ -42,28 +42,29 @@ public class BusTest extends AbstractJPATest{
     @Test
     public void testRead() {
 
-        List<Bus> buses = em.createNamedQuery("Bus.findAll", Bus.class).getResultList();
-        assertTrue(buses.size() == 1);
-        assertFalse(buses.isEmpty());
+        List<Train> trains = em.createNamedQuery("Train.findAll", Train.class).getResultList();
+        assertTrue(trains.size() >= 1);
+        assertFalse(trains.isEmpty());
 
-        for (Bus b : buses) {
-            System.out.println(b.toString());
+        for (Train t : trains) {
+            System.out.println(t.toString());
 
-            for (Station s : b.getStations()) {
+            for (Station s : t.getStations()) {
                 System.out.println("\t"+s.toString());
           }
+            
         }
     }
 
     @Test
     public void testUpdate() {
-        Bus b = em.createNamedQuery("Bus.findByName", Bus.class).setParameter("name", "155").getSingleResult();
-        assertNotNull(b.getId());
+        Train t = em.createNamedQuery("Train.findByName", Train.class).setParameter("name", "Green Line").getSingleResult();
+        assertNotNull(t.getId());
 
-        String originalName = b.getName();
-        String newName = "82";
+        String originalName = t.getName();
+        String newName = "Blue Line";
         tx.begin();
-        b.setName(newName);
+        t.setName(newName);
         tx.commit();
 
         //assertNotEquals(originalName, b.getName());
@@ -77,25 +78,25 @@ public class BusTest extends AbstractJPATest{
     @Test
     @Ignore
     public void testDelete() {
-       TypedQuery<Bus> q = em.createQuery("select b from Bus b where b.name = ?1", Bus.class);
-        q.setParameter(1, "49B");
-        Bus b = q.getSingleResult();
+       TypedQuery<Train> q = em.createQuery("select t from Train t where t.name = ?1", Train.class);
+        q.setParameter(1, "Brown Line");
+        Train t = q.getSingleResult();
         
-        assertNotNull(b.getId());
+        assertNotNull(t.getId());
 
         tx.begin();
-        for(Passenger p : b.getPassengers()){
+        for(Passenger p : t.getPassengers()){
             em.remove(p);
       }
-        for(Station s : b.getStations()){
+        for(Station s : t.getStations()){
             em.remove(s);
         }
         
-        em.remove(b.getDriver());
-        em.remove(b);
+        em.remove(t.getDriver());
+        em.remove(t);
         tx.commit();
 
-        Bus postRemove = em.find(Bus.class, 1L);
+        Train postRemove = em.find(Train.class, 1L);
         assertNull(postRemove);
         
     }

@@ -86,6 +86,12 @@ public class Ventra extends BaseEntity implements Serializable{
         this.cardNumber = cardNumber;
     }
     
-    
+      @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\n\t");
+        sb.append("Ventra{cardNumber=").append(cardNumber).append('}');
+        return sb.toString();
+    }
 
 }

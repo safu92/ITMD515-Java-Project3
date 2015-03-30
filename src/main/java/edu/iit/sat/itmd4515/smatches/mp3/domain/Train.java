@@ -69,6 +69,10 @@ public class Train extends BaseEntity implements Serializable{
         this.name = name;
     }
 
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
       @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());

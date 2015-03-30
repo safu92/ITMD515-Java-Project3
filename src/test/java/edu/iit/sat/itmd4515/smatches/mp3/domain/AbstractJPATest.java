@@ -6,6 +6,7 @@
 package edu.iit.sat.itmd4515.smatches.mp3.domain;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,7 +19,7 @@ import org.junit.BeforeClass;
 
 /**
  *
- * @author spyrisos
+ * @author smatches
  */
 public abstract class AbstractJPATest {
 
@@ -52,7 +53,10 @@ public abstract class AbstractJPATest {
         
         //set fields for train
         Train train = new Train();
-        train.setName("RedLine");
+        train.setName("Red Line");
+        
+        Train train1 = new Train();
+        train1.setName("Yellow Line");
         
         //Bus bus = new Bus();
         //bus.setName("155");
@@ -72,11 +76,11 @@ public abstract class AbstractJPATest {
         driver.setBirthDate(new GregorianCalendar(1992, 06, 18).getTime());
 
         
-                Driver driver1 = new Driver();
-        driver.setFirstName("James");
-        driver.setLastName("Cruz");
-        driver.setDriverBatch("D0257");
-        driver.setBirthDate(new GregorianCalendar(1968, 11, 24).getTime());
+        Driver driver1 = new Driver();
+        driver1.setFirstName("James");
+        driver1.setLastName("Cruz");
+        driver1.setDriverBatch("D0257");
+        driver1.setBirthDate(new GregorianCalendar(1968, 11, 24).getTime());
         
         Passenger p1 = new Passenger();
         p1.setFirstName("Bryan");
@@ -90,7 +94,14 @@ public abstract class AbstractJPATest {
 
          // set relationship between bus and station
         //radioStation.getShows().add(show);
-        //show.setRadioStation(radioStation);
+        //show.setRadioStation(radioStation)
+        
+        bus.setDriver(driver);
+        driver.setBus(bus);
+        
+        train.setDriver(driver1);
+        driver1.setTrain(train);
+        
         
         // set relationship between bus and the passenger
         bus.getPassengers().add(p1);
@@ -101,8 +112,8 @@ public abstract class AbstractJPATest {
         // set relationship between the bus and station
         station.getBuses().add(bus);
         bus.getStations().add(station);
-        station.getTrains().add(train);
-        train.getStations().add(station);
+        station1.getTrains().add(train);
+        train.getStations().add(station1);
 
         Ventra v1  = new Ventra();
         v1.setCardNumber("2563985614578516");
@@ -112,30 +123,57 @@ public abstract class AbstractJPATest {
         //Uni Directional One to One Relationship of passenger to ventra
         p1.setVentra(v1);
         
+        em.persist(driver);
+        em.persist(driver1);
         em.persist(p1);
         em.persist(p2);
         em.persist(train);
+        em.persist(train1);
         em.persist(bus);
         em.persist(station);
         em.persist(station1);
         em.persist(v1);        
-        em.persist(driver);
-        em.persist(driver1);
+        
         tx.commit();
     }
 
     @After
     public void tearDown() {
-        removeTestData();
+        //removeTestData();
         em.close();
     }
 
     private void removeTestData() {
 
-        Station s = em.createNamedQuery("Station.findByName", Station.class).setParameter("name", "Howard").getSingleResult();
+//        TypedQuery<Bus> q = em.createQuery("select b from Bus b where b.name = ?1", Bus.class);
+//        q.setParameter(1, "49B");
+//        Bus b = q.getSingleResult();
+//       
+//        tx.begin();
+//        em.remove(b);
+//        tx.commit();
+        
+        //Bus b = em.createNamedQuery("Bus.findByName", Bus.class).setParameter("name", "49B").getSingleResult();
 
+        
         tx.begin();
-        em.remove(s);
+         for(Station s : em.createNamedQuery("Station.findAll", Station.class).getResultList()){
+            em.remove(s);
+        }
+
+        for(Passenger p : em.createNamedQuery("Passenger.findAll", Passenger.class).getResultList()){
+            em.remove(p);
+        }
+
+        for(Bus b : em.createNamedQuery("Bus.findAll", Bus.class).getResultList()){
+            em.remove(b);
+        }
+
+        for(Train t : em.createNamedQuery("Train.findAll", Train.class).getResultList()){
+            em.remove(t);
+        }
+
+        
         tx.commit();
     }
 }

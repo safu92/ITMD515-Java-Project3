@@ -16,19 +16,19 @@ import org.junit.Ignore;
  *
  * @author ALLAH
  */
-public class DriverTest extends AbstractJPATest{
+public class PassengerTest extends AbstractJPATest{
     
-    public DriverTest() {
+    public PassengerTest() {
     }
    
     
     @Test
     public void testCreate() {
-        Driver newOne = new Driver();
-        newOne.setFirstName("Ayun");
-        newOne.setLastName("Brown");
-        newOne.setBirthDate(new GregorianCalendar(1985, 03, 15).getTime());
-        newOne.setDriverBatch("D0316");
+        Passenger newOne = new Passenger();
+        newOne.setFirstName("Nathan");
+        newOne.setLastName("Gomes");
+        newOne.setBirthDate(new GregorianCalendar(1970, 03, 02).getTime());
+        
         
         tx.begin();
         em.persist(newOne);
@@ -41,12 +41,12 @@ public class DriverTest extends AbstractJPATest{
     @Test
     public void testRead() {
 
-        List<Driver> drivers = em.createNamedQuery("Driver.findAll", Driver.class).getResultList();
-        assertTrue(drivers.size() >= 1);
-        assertFalse(drivers.isEmpty());
+        List<Passenger> passengers = em.createNamedQuery("Passenger.findAll", Passenger.class).getResultList();
+        assertTrue(passengers.size() >= 1);
+        assertFalse(passengers.isEmpty());
 
-        for (Driver d : drivers) {
-            System.out.println(d.toString());
+        for (Passenger p : passengers) {
+            System.out.println(p.toString());
 
                // System.out.println("\t"+d.getBus().toString());
                 //System.out.println("\t"+d.getTrain().toString());
@@ -56,13 +56,13 @@ public class DriverTest extends AbstractJPATest{
 
     @Test
     public void testUpdate() {
-        Driver d = em.createNamedQuery("Driver.findByName", Driver.class).setParameter("lname", "Brown").getSingleResult();
-        assertNotNull(d.getId());
+        Passenger p = em.createNamedQuery("Passenger.findByName", Passenger.class).setParameter("lname", "Gomes").getSingleResult();
+        assertNotNull(p.getId());
 
-        String originalName = d.getLastName();
-        String newName = "Dalton";
+        String originalName = p.getLastName();
+        String newName = "Strick";
         tx.begin();
-        d.setLastName(newName);
+        p.setLastName(newName);
         tx.commit();
 
         //assertNotEquals(originalName, b.getName());
@@ -76,20 +76,20 @@ public class DriverTest extends AbstractJPATest{
     @Test
     @Ignore
     public void testDelete() {
-       TypedQuery<Driver> q = em.createQuery("select d from Driver d where d.firstName = ?1", Driver.class);
-        q.setParameter(1, "Ayun");
-        Driver d = q.getSingleResult();
+       TypedQuery<Passenger> q = em.createQuery("select p from Passenger p where p.firstName = ?1", Passenger.class);
+        q.setParameter(1, "Nathan");
+        Passenger p = q.getSingleResult();
         
-        assertNotNull(d.getId());
+        assertNotNull(p.getId());
 
         tx.begin();
-        em.remove(d.getBus());
-        em.remove(d.getTrain());
         
-      
-        em.remove(d);
+        em.remove(p.getVentra());
+        
+        em.remove(p);
         tx.commit();
 
+        
     }
 
     

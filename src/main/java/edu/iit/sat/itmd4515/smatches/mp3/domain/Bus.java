@@ -40,6 +40,10 @@ public class Bus extends BaseEntity implements Serializable{
     @OneToOne
     private Driver driver;
 
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
     public Driver getDriver() {
         return driver;
     }

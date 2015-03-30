@@ -65,5 +65,12 @@ public class Passenger extends Person implements Serializable{
         this.bus = bus;
     }
     
+       @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\n\t");
+        sb.append("Passenger{name=").append(getFirstName()).append('}');
+        return sb.toString();
+    }
     
 }
